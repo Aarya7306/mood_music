@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";  
+import moodRoutes from "./routes/moodRoutes.js";
 
 dotenv.config();
 
@@ -15,12 +16,13 @@ app.use(express.json());
 // connect database
 connectDB();
 
+
 // test route
 app.get("/api/health", (req, res) => {
   res.json({ message: "Backend is running ✅" });
 });
 app.use('/api/auth', authRoutes);
-
+app.use('/api/mood', moodRoutes);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
