@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";  
 import moodRoutes from "./routes/moodRoutes.js";
+import playlistRoutes from "./routes/playlistRoutes.js";  
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
 
@@ -23,6 +25,8 @@ app.get("/api/health", (req, res) => {
 });
 app.use('/api/auth', authRoutes);
 app.use('/api/mood', moodRoutes);
+app.use('/api/playlist', playlistRoutes);
+app.use('/api/user', userRoutes);
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

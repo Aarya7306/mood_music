@@ -14,6 +14,14 @@ const getMoodSongs = async (req, res) => {
         //search songs on youtube
         const songs = await searchSongs(query);
 
+
+        if(req.user){
+            const user = await User.findById(req.user.id);
+                if(user){
+                    user.searchHistory.push({mood, intensity, songs: songs.map(song => ({title: song.title, videoId: song.videoId}))});
+                    await user.save();
+                }
+        }
         res.json({
             success: true,
             mood,
